@@ -9,19 +9,21 @@ export class PingPong {
   private ball: Ball;
   private readonly leftPlayer: Player;
   private readonly rightPlayer: Player;
-  private velocityX = -4;
-  private velocityY = 4;
+  private velocityX = -2.5;
+  private velocityY = 2.5;
   onScore!: (info: { left: boolean; right: boolean }) => void;
 
   constructor(
     private canvas: HTMLCanvasElement,
     private canvasParent: HTMLDivElement,
     private ballRadius = 20
-  ) {
+  )
+   {
     this.ctx = canvas.getContext("2d")!;
     this.canvas.width = canvasParent.offsetWidth;
     this.canvas.height = canvasParent.offsetHeight;
     this.controls = new Controls();
+    
     this.leftPlayer = new Player(
       this.ctx,
       { x: 10, y: this.canvas.height / 2 - 50 },
@@ -31,6 +33,7 @@ export class PingPong {
       this.controls.arrowKeys,
       this.velocityY
     );
+
     this.rightPlayer = new Player(
       this.ctx,
       { x: this.canvas.width - 20, y: this.canvas.height / 2 - 50 },
@@ -40,6 +43,7 @@ export class PingPong {
       this.controls.arrowKeys,
       this.velocityY
     );
+
     this.ball = new Ball(
       this.ctx,
       {
